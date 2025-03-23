@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Message Multiple Times</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        input, button {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .message-box {
+            margin-top: 20px;
+            text-align: left;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            background: #fff;
+        }
+        .message {
+            background: #dff0d8;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border-left: 4px solid #28a745;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Send Message Multiple Times</h2>
+        <input type="text" id="message" placeholder="Enter your message">
+        <input type="number" id="count" placeholder="Number of times" min="1" max="100">
+        <button onclick="sendMessage()">Send</button>
+
+        <div class="message-box" id="messageBox">
+            <!-- Messages will appear here -->
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            let message = document.getElementById("message").value;
+            let count = parseInt(document.getElementById("count").value);
+            let messageBox = document.getElementById("messageBox");
+
+            // Clear previous messages
+            messageBox.innerHTML = "";
+
+            if (!message.trim() || count <= 0 || isNaN(count)) {
+                alert("Please enter a valid message and count!");
+                return;
+            }
+
+            for (let i = 0; i < count; i++) {
+                let msgDiv = document.createElement("div");
+                msgDiv.classList.add("message");
+                msgDiv.textContent = `${i + 1}: ${message}`;
+                messageBox.appendChild(msgDiv);
+            }
+        }
+    </script>
+
+</body>
+</html>
